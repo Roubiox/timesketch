@@ -135,6 +135,9 @@ limitations under the License.
                   </v-tooltip>
 
                   <span class="right">
+                    <span v-if="slotProps.timelineStatus === 'processing'" class="ml-3 mr-3">
+                        <v-progress-circular small indeterminate color="grey" :size="17" :width="2"></v-progress-circular>
+                    </span>
                     <span v-if="!slotProps.timelineFailed" class="events-count mr-1" x-small>
                       {{ getCount(item) | compactNumber }}
                     </span>
@@ -168,6 +171,7 @@ import EventBus from '../../event-bus.js'
 
 import TsUploadTimelineForm from '../UploadForm.vue'
 import TsTimelineComponent from '../Explore/TimelineComponent.vue'
+
 export default {
   props: {
     iconOnly: Boolean,
