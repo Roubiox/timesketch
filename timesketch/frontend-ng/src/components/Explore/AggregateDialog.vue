@@ -313,6 +313,9 @@ export default {
     }
   },
   computed: {
+    settings() {
+      return this.$store.state.settings
+    },
     sketch() {
       return this.$store.state.sketch
     },
