@@ -68,7 +68,7 @@ export default {
       EventBus.$emit('showContextWindow', this.event)
     },
     copyEventAsJSON() {
-      ApiClient.getEvent(this.sketch.id, this.event._index, this.event._id, !!this.settings.includeProcessingTimelines)
+      ApiClient.getEvent(this.sketch.id, this.event._index, this.event._id, !!this.settings.showProcessingTimelineEvents)
         .then((response) => {
           let fullEvent = response.data.objects
           let eventJSON = JSON.stringify(fullEvent, null, 3)
