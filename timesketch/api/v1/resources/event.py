@@ -844,10 +844,14 @@ class EventAnnotationResource(resources.ResourceMixin, Resource):
         if _search_node_id:
             current_search_node = self._get_current_search_node(_search_node_id, sketch)
 
+        allowed_statuses = ["ready"]
+        if current_app.config.get("SEARCH_PROCESSING_TIMELINES", False):
+            allowed_statuses.append("processing")
+
         indices = [
             t.searchindex.index_name
             for t in sketch.timelines
-            if t.get_status.status.lower() == "ready"
+            if t.get_status.status.lower() in allowed_statuses
         ]
         annotation_type = form.annotation_type.data
         events = form.events.raw_data
