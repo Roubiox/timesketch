@@ -81,9 +81,9 @@ limitations under the License.
           <v-switch v-model="settings.showProcessingTimelineEvents" color="primary" @change="saveSettings()"></v-switch>
         </v-list-item-action>
         <v-list-item-content>
-          <v-list-item-title>Show processing timeline events</v-list-item-title>
+          <v-list-item-title>Include Processing Events</v-list-item-title>
           <v-list-item-subtitle
-          >Select to include events from timelines in <strong>processing</strong> state</v-list-item-subtitle
+          >Allows queries to include events from timelines still being <strong>processed</strong>.</v-list-item-subtitle
           >
         </v-list-item-content>
       </v-list-item>
