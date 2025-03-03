@@ -27,6 +27,7 @@ from opensearchpy.exceptions import RequestError
 import numpy as np
 import pandas as pd
 
+from flask import current_app
 from flask import jsonify
 from flask import request
 from flask import abort
@@ -299,8 +300,7 @@ class EventResource(resources.ResourceMixin, Resource):
             args.get("include_processing_timelines", False)
         )
         allowed_statuses = ["ready"]
-
-        if include_processing_timelines:
+        if include_processing_timelines and current_app.config.get("SEARCH_PROCESSING_TIMELINES", False):
             allowed_statuses.append("processing")
         indices = [
             t.searchindex.index_name
