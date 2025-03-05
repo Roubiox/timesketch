@@ -1128,7 +1128,7 @@ export default {
       // least one enabled timeline is the "processing" state.
       this.showBanner =
         !!this.settings.showProcessingTimelineEvents &&
-        this.$store.state.sketch.active_timelines
+        this.sketch.active_timelines
           .filter(tl => this.$store.state.enabledTimelines.includes(tl.id))
           .some(tl => tl.status && tl.status[0].status === 'processing')
     },
