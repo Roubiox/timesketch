@@ -63,7 +63,7 @@ export default {
   components:{
     TsAnalyzerTimelineChip,
   },
-  props: ['analyzerTimelineId', 'componentName'],
+  props: ['analyzerTimelineId', 'componentName', 'includeProcessingTimelines'],
   data() {
     return {
       selectedTimelines: [],
@@ -73,17 +73,11 @@ export default {
     sketch() {
       return this.$store.state.sketch
     },
-    settings(){
-      return this.$store.state.settings
-    },
     allReadyTimelines() {
-      // If showProcessingTimelineEvents is enabled, include processing timelines.
-      const includeProcessing = !!this.settings.showProcessingTimelineEvents;
-
       // Sort alphabetically based on timeline name.
       const timelines = this.sketch.timelines.filter(tl =>
         tl.status[0].status === 'ready' ||
-        (includeProcessing && tl.status[0].status === 'processing')
+        (this.includeProcessingTimelines && tl.status[0].status === 'processing')
       );
       timelines.sort((a, b) => a.name.localeCompare(b.name))
       return timelines;
