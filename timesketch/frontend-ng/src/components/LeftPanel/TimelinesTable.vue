@@ -242,7 +242,11 @@ export default {
       this.$store.dispatch('updateEnabledTimelines', timelineIds)
     },
     timelineStyle(timelineStatus, isSelected) {
-      const greyOut = timelineStatus === 'ready' && !isSelected
+      let status_list = ['ready']
+      if (this.settings.showProcessingTimelineEvents) {
+        status_list.push('processing')
+      }
+      const greyOut = status_list.includes(timelineStatus) && !isSelected
       return {
         opacity: greyOut ? '50%' : '100%',
       }
